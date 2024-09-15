@@ -46,7 +46,7 @@ As for the target segmentation tasks, the 3D model can be initialized with the p
 ```python
 import torch
 from torch import nn
-# build a 3D segmentation model based on resnet50
+# build a 3D segmentation model based on PVTv2
 class PVT_UNet(nn.Module):
     def __init__(self, PVT_encoder, skip_connection, n_class=1, pre_training=True, load_path=None):
         super(PVT_UNet, self).__init__()
