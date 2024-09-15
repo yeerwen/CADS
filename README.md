@@ -57,17 +57,19 @@ class PVT_UNet(nn.Module):
         
         if pre_training:
             print('loading from checkpoint ssl: {}'.format(load_path))
-            w_before = self.encoder.state_dict()['conv1.weight'].mean()
-            pre_dict = torch.load(load_path, map_location='cpu')['teacher']
-            pre_dict = {k.replace("module.backbone.", ""): v for k, v in pre_dict.items()}
-            # print(pre_dict)
-            model_dict = self.encoder.state_dict()
-            pre_dict_update = {k:v for k, v in pre_dict.items() if k in model_dict}
+            w_before = self.PVT.state_dict()['patch_embed1.proj.0.weight'].mean()
+            pre_dict = torch.load(pretrain_path, map_location='cpu')['teacher']
+            pre_dict = {k.replace("backbone.", ""): v for k, v in pre_dict.items()}
+            model_dict = self.PVT.state_dict()
+            pre_not = [k for k, v in model_dict.items() if k not in pre_dict]
+            print(pre_not)
+            pre_dict_update = {k: v for k, v in pre_dict.items() if k in model_dict}
             print("[pre_%d/mod_%d]: %d shared layers" % (len(pre_dict), len(model_dict), len(pre_dict_update)))
             model_dict.update(pre_dict_update)
-            self.encoder.load_state_dict(model_dict)
-            w_after = self.encoder.state_dict()['conv1.weight'].mean()
+            self.PVT.load_state_dict(model_dict)
+            w_after = self.PVT.state_dict()['patch_embed1.proj.0.weight'].mean()
             print("one-layer before/after: [%.8f, %.8f]" % (w_before, w_after))
+
         else:
             print("TFS!")
 
