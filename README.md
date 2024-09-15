@@ -51,7 +51,7 @@ class PVT_UNet(nn.Module):
     def __init__(self, PVT_encoder, skip_connection, n_class=1, pre_training=True, load_path=None):
         super(PVT_UNet, self).__init__()
 
-        self.encoder = PVT_encoder
+        self.PVT = PVT_encoder()
         self.decoder = Decoder(skip_connection)
         self.seg_head = nn.Conv3d(n_class, kernel_size=1)
         
