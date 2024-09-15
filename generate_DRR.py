@@ -122,7 +122,6 @@ def DigitallyReconstructedRadiograph(
     image = (image - np.min(image)) / (np.max(image) - np.min(image))
 
     np.save(output_path, (image - 0.5)*2)
-    cv.imwrite(output_path.replace("npy", "png"), image*255)
 
 def pre_process_image_DeepLesion(path, out_path):
     if os.path.exists(out_path):
