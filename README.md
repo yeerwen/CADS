@@ -83,7 +83,7 @@ class PVT_UNet(nn.Module):
 If this code is helpful for your study, please cite:
 
 ```
-@article{CADS,
+@article{yeCADS,
   title={CADS: A Self-supervised Learner via Cross-modal Alignment and Deep Self-distillation for CT Volume Segmentation},
   author={Yiwen Ye, Jianpeng Zhang, Ziyang Chen, and Yong Xia},
   booktitle={IEEE Transactions on Medical Imaging},
