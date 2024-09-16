@@ -3,10 +3,16 @@ This is the official pytorch implementation of our TMI paper "CADS: A Self-super
 
 This paper is available [here](https://ieeexplore.ieee.org/document/10605840).
 
-
 <div align="center">
   <img width="80%" alt="CADS illustration" src="github/Overview.png">
 </div>
+
+## To do
+- [x] Pre-processing Code
+- [x] Pre-training Code Release
+- [x] Pre-trained Model
+- [ ] Fine-tuning Code Release (Before Sep 24, 2024)
+
 
 ## Requirements
 CUDA 10.1<br />
